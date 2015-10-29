@@ -1,0 +1,2 @@
+pass=1234
+encode=$2a$10$x2rbddASJTNUhlgxzdtSuOxR.UMoVOUDsv.75kvkEFRoHiCS7eFQK
