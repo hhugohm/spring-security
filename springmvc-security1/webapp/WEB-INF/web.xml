@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+ 		/WEB-INF/spring-security.xml
+ 		</param-value>
+	</context-param>
+	
+	<!-- listener carga Spring-->
+<listener>
+ <listener-class>
+ org.springframework.web.context.ContextLoaderListener
+ </listener-class>
+</listener>
+
+<!-- listener para el tiempo de session-->
+<listener>
+  <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+</listener>
+
+<!-- filtro de Spring security-->
+<filter>
+ <filter-name>springSecurityFilterChain</filter-name>
+ <filter-class>
+	org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+</filter>
+<filter-mapping>
+ <filter-name>springSecurityFilterChain</filter-name>
+ <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+	<servlet>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<session-config>
+    <session-timeout>1</session-timeout>
+    <tracking-mode>COOKIE</tracking-mode>
+</session-config>
+<error-page>
+    <location>/general-error.jsp</location>
+</error-page>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+</web-app>
